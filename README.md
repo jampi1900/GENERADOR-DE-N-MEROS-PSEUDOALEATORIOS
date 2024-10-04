@@ -36,4 +36,4 @@ Este repositorio contiene información sobre los principios básicos de simulaci
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/simulacion.git
+    gh repo clone jampi1900/GENERADOR-DE-N-MEROS-PSEUDOALEATORIOS
