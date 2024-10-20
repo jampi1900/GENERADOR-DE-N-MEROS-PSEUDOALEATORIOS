@@ -26,7 +26,7 @@ class Cuadrados_Medios:
             (len(semilla_cuadrada) % 2 == 0 and D % 2 != 0)):
             semilla_cuadrada = '0' + semilla_cuadrada
 
-
+        #Si el primer cero no fue suficiente agregar mas ceros hasta tener una longitd D
         while len(semilla_cuadrada) < D:
             semilla_cuadrada = '0' + semilla_cuadrada
 
@@ -36,9 +36,7 @@ class Cuadrados_Medios:
         start = (Long - D) // 2
         end = start + D
         new_semilla = semilla_cuadrada[start:end]
-
-
-
+        
         R = ('0.' + str(new_semilla))
 
         # Guardar los datos en un diccionario
@@ -70,14 +68,13 @@ class Multiplicador_Constante:
             Y_str = '0' + Y_str
             
             
-        
-            
         Long = len(Y_str)
         start = (Long - D) // 2
         end = start + D
         new_semilla = str(Y_str[start:end])
         
         R = '0.' + str(new_semilla)  # Resultado como un número entre 0 y 1
+
 
         # Guardar los datos en un diccionario
         self.data.append({
@@ -139,6 +136,16 @@ class congruencial_lineal():
         self.c = c
         self.m = m
         self.data = [] 
+        
+        
+    """
+      def __init__(self, a, m):
+        self.a = 1 + 4 * K
+        self.c = c
+        self.m = 2**g
+        self.data = [] 
+     
+    """
 
     def generar(self, semilla):
         # Calculamos Xi+1 = (a * Xi + c) % m
@@ -158,6 +165,13 @@ class congruencial_multiplicativo:
         self.a = a
         self.m = m
         self.data = [] 
+    """
+      def __init__(self, a, m):
+        self.a = 5 + 8 * K
+        self.m = 2**g
+        self.data = [] 
+     
+    """
         
     def generar(self, semilla):
         # Calculamos Xi+1 = (a * Xi) % m
@@ -220,6 +234,44 @@ class congruencial_cuadratico:
         })
        
         return R, new_semilla
+    
+    
+    
+    
+#PERIODO 4
+#X0 = 3 P = 11 Q = 13
+class blum:
+    def __init__(self, p,q):
+        self.p = p
+        self.q = q
+        self.m = p * q
+       
+        self.data = [] 
+        
+    def generar(self, semilla):
+        # gcd(p-3)/2,((q-3)/2)=2
+        # Calculamos Xi+1 = (a * Xi^2 + b * Xi + c) % m
+        
+        new_semilla = (int(semilla)**2) % (self.m)
+      
+        # Calcular r_{i+1} como Xi+1 / (m-1)
+        R = new_semilla / (self.m - 1)
+        
+        # Guardar los datos
+        self.data.append({
+            'Semilla': semilla,
+            'Nueva Semilla': new_semilla,
+            'Ri': R
+        })
+       
+        return R, new_semilla
+    
+
+    
+    
+    
+    
+
 
     
 
